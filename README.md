@@ -5,6 +5,7 @@ Projeto foi criado em ASP.NET MVC, utilizando .Net Framework, DDD, EF (apenas pa
 # Execução
 
 Para compilar e rodar o app poderá ser necessário a instalação do ef, para tanto no Console do Gerenciador de Pacotes execute
+
 PM> Install-Package EntityFramework
 
 # Descritivo
