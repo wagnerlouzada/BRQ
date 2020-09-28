@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BRQ.MVC.ViewModels.RegraViewModel>
+@{
+    ViewBag.Title = "Lista de Regras";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Criar Nova", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Regra")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientSector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxValue)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Risk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoDeRegras.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientSector)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Risk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.RegraId }) |
+                    @*@Html.ActionLink("Detalhes", "Details", new { id = item.RegraId }) |*@
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.RegraId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

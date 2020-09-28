@@ -1,0 +1,77 @@
+﻿@model BRQ.MVC.ViewModels.RegraViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Tem certeza que quer excluir?</h3>
+    <div>
+        <h4>RegraViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientSector)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClientSector)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MinValue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxValue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaxValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Risk)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Risk)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ativo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GrupoDeRegrasId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GrupoDeRegrasId)
+            </dd>
+
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Voltar para a Lista", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

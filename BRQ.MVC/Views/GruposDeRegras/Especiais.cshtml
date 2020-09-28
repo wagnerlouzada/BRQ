@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BRQ.MVC.ViewModels.GrupoDeRegrasViewModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Especiais</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.GrupoDeRegrasId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.GrupoDeRegrasId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.GrupoDeRegrasId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

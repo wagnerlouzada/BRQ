@@ -1,0 +1,72 @@
+﻿@model BRQ.MVC.ViewModels.RegraViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>RegraViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.GrupoDeRegrasId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GrupoDeRegrasId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientSector)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClientSector)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MinValue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxValue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaxValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Risk)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Risk)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ativo)
+            </dd>
+
+
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.RegraId }) |
+        @Html.ActionLink("Voltar para a Lista", "Index")
+    </p>
+</body>
+</html>

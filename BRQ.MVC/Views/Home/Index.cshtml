@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>BRQ</h1>
+    <p class="lead">Teste Trades/Classificação de Risco.</p>
+    <p />
+    <h2>SOBRE A ABORDAGEM PARA ATENDER AOS QUESITOS DO TESTE</h2>
+    <p>
+        <b>Sobre as regras:</b><br />
+
+        Entendendo que os parametros de entrada SEMPRE serão Valor e Setor, por conta
+        da interface apresentada, temos que as regras possíveis podem ser generalizadas
+        como: <br />
+        <br />
+        ValorMinimo, ValorMaximo, Setor, RISCO
+        onde RISCO é a Classificação, Que neste caso também poderá ser as
+        previamente especificadas, e também novas classificações <br />
+        <br />
+        Observação: Poderemos entender que minimo ou maximo nulos ou zeros significam sem
+        limite. Podemos também adotar numeros absolutos para o máximo. <br />
+        <br />
+        Teriamos então para os quesitos do teste as seguintes possibilidades:<br />
+        0, 1.000.000, PUBLIC, LOWRISK<br />
+        1.000.001, 999.999.999.999, PUBLIC, MEDIUMRISK<br />
+        1.000.001, 999.999.999.999, PRIVATE, HIGHRISK<br />
+        <br />
+        <b>ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO</b><br />
+        Dentre estas regras parece faltar regra para setor <b>PRIVADO</b> até 1.000.000.<br />
+        <br />
+        Estas regras podem ser mantidas em Banco de Dados.<br />
+        <br />
+        a Estrutura da Classes contemplará:<br />
+        <br />
+        Class GrupoDeRegras {<br />
+        int GrupoDeRegrasId // chave primaria<br />
+        string Descricao<br />
+        }<br />
+        <br />
+        Class Rules {<br />
+        int RegraId  // chave primaria
+        double MinValue  <br />
+        double MaxValue  <br />
+        string ClientSector  <br />
+        string Risk  <br />
+        int GrupoDeRegrasId // Foreign Key <br />
+        }<br />
+        <br />
+        A Interface de chamada da classificação é a determinada: <br />
+        <br />
+        interface Trade {<br />
+        double Value { get; }<br/>
+        string ClientSector { get; }<br/>
+        }<br />
+        <br />
+        A tabela GrupoDeRegras serve par agrupar um conjunto de regras.<br />
+        <br />
+        A classificação do Trade se dará aplicando sequencialmente as Regras, e a ultima regra valida aplicada será a retornada.<br />
+        <br />
+        Devido a falta de definição de uma classificação para situações não contempladas, será retornado <b>"NONE"</b> como classificação para o Trade. 
+        Entendo que é necessário uma definição para tal situação.
+        <br />
+        A sequência de aplicação das regras será do menor ValorMinimo para o maior Valor Minimo, isso devidamente filtrado para o ClientSector da trade.<br />
+        <br />
+        A abordagem permite que caso de vários critérios de classificação possam ser "testados" até se conseguir um "critério" adequado, basta´ra inserir novos GruposDeRegras, e para cada um destes as regras necessárias.<br />
+        <br />
+        As regras permitem que o ClientSector também possa ser "Public", "Private" ou outro que venha a ser necessário.<br />
+        <br />
+        A classificação retornada poderá ser "LOWRISK", "MEDIUMRIS", "HIGHRISK" ou qualquer outra que venha a ser necessária.<br />
+        <br />
+        Como a especificação determina apenas Value e ClientSector para o Trade, apenas estes critérios foram utilizados, porém caso o critério seja acrescido de mais parâmetros, bastará alterar os Dominios.<br />
+
+        A tabela Regras contempla cada regra a ser utilizada para classificar um trade.<br />
+        <br />
+        A classificação do Trade se dará aplicando sequencialmente as Regras, e a ultima regra aplicada será a retornada.<br />
+        <br />
+        A sequência de aplicação das regras será do menor ValorMinimo para o maior Valor Minimo, isso devidamente filtrado para o ClientSector da trade.<br />
+        <br />
+        Como aprimoramento do mecanismo de classificação entendo que poderia ser interessante uma definição explicita da sequência de aplicação das regras. O que implicaria em acrescentar um atributo <i>Sequencia</i> na classe de <i>Regras</i>.<br/>
+        <br />
+        A abordagem permite que caso de vários critérios de classificação possam ser "testados" até se conseguir um "critério" adequado, basta´ra inserir novos GruposDeRegras, e para cada um destes as regras necessárias.<br />
+        <br />
+        As regras permitem que o ClientSector também possa ser "Public", "Private" ou outro que venha a ser necessário.<br />
+        <br />
+        A classificação retornada poderá ser "LOWRISK", "MEDIUMRIS", "HIGHRISK" ou qualquer outra que venha a ser necessária.<br />
+        <br />
+        Como a especificação determina apenas Value e CleintSector para o Trade, apenas estes critérios foram utilizados, porém caso o critério seja acrescido de mais parâmetros, bastará alterar os Dominios.<br />
+
+
+    </p>
+    <p />
+    <p><a href="http://wagner.louzada.online" class="btn btn-primary btn-lg">Wagner.Louzada.Online &raquo;</a></p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Autor</h2>
+        <p>
+            Wagner
+        </p>
+        <p><a class="btn btn-default" href="http://wagner.louzada.online">WL &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Notas</h2>
+        <p># Teste BRQ/Credit</p>
+        <br />
+        <p>Projeto foi criado em ASP.NET MVC, utilizando .Net Framework, DDD, EF (apenas para poder persistir as regras em momento oportuno), IoC e AutoMapper</p>
+        <br />
+        <p><b># Execução</b></p>
+        <br />
+        <p>Para compilar e rodar o app poderá ser necessário a instalação do ef, para tanto no Console do Gerenciador de Pacotes execute</p>
+        PM> Install-Package EntityFramework
+        <br />
+        <p><b># Descritivo</b></p>
+        <br />
+        <p>Este é um projeto que tem foco no IoC, e que pretende demonstrar como "Regras de Classificação" com base em 2 valores podem ser utilizadas de forma dinâmica, utilizando algumas tecnologias e padrões de projetos:</p>
+        <li>ASP.NET MVC para front end</li>
+        <li>.Net Framework - para o core do app (poderia ser adotado também o net.core)</li>
+        <li>DDD (Domain Drive Design) - Como pattern para desacoplamento)</li>
+        <li>IoC (Simple Injector)</li>
+        <li>Fluent API</li>
+        <li>Linq/Lambda para filtragens</li>
+        <li>EF para manter as regras - utilizando SQLServer.</li>
+        <br />
+        <p><b># Observação</b></p>
+        <br />
+        <p>Para diminuir o tempo necessário foi utilizado um modelo de aplicação previamente preparado, como base da estrutura e alguns outros itens acessórios.</p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Extras</h2>
+
+    </div>
+</div>

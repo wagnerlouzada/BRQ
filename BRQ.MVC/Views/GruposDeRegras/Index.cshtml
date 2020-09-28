@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BRQ.MVC.ViewModels.GrupoDeRegrasViewModel>
+
+@{
+    ViewBag.Title = "Lista de Grupos";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Criar Nova", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Grupo De Regras", "Especiais")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.GrupoDeRegrasId }) |
+                    @Html.ActionLink("Testar Trades", "Process", new { id = item.GrupoDeRegrasId }) |
+                    @*@Html.ActionLink("Detalhes", "Details", new { id=item.GrupoDeRegrasId }) |*@
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.GrupoDeRegrasId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
