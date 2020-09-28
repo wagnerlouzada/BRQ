@@ -1,4 +1,4 @@
-# Teste BRQ/Credit
+# Projeto para classificação de risco
 
 Projeto foi criado em ASP.NET MVC, utilizando .Net Framework, DDD, EF (apenas para poder persistir as regras em momento oportuno), IoC e AutoMapper
 
